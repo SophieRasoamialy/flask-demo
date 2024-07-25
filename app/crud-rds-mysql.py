@@ -54,7 +54,7 @@ def get_books():
             'isbn': book[3]
         }
         books_list.append(book_dict)
-        print("get all books")
+        print("2) get all books")
     
     return jsonify(books_list)
 
