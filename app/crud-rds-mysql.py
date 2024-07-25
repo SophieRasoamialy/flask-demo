@@ -16,13 +16,7 @@ def log_request_info():
 
 
 # MySQL connection configuration
-# config = {
-#        'user': 'root',
-#        'password': 'root',
-#        'host': 'db',
-#        'port': '3306',
-#        'database': 'mybooks'
-#    }
+
 
 # Create connection to the MySQL database
 db = mysql.connector.connect(**config)
