@@ -15,7 +15,14 @@ def log_request_info():
     access_logger.info(log_data)
 
 
-
+# MySQL connection configuration
+# config = {
+#        'user': 'root',
+#        'password': 'root',
+#        'host': 'db',
+#        'port': '3306',
+#        'database': 'mybooks'
+#    }
 
 # Create connection to the MySQL database
 db = mysql.connector.connect(**config)
@@ -95,7 +102,7 @@ def delete_book(book_id):
     cursor.execute(delete_query, book_id)
     db.commit()
     
-    print("delete a book")
+    print("to delete a book")
     return jsonify({'message': 'Book deleted successfully'})
 
 
