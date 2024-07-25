@@ -20,11 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r ./app/requirements.txt
+          pip install -r requirements.txt
           
       - name: Deploy Your Application
         run: |
           # Add your deployment commands here
           # For example, you might use a script to deploy your Flask app
-          python ./app/crud-rds-mysql.py
+          python crud-rds-mysql.py
 
