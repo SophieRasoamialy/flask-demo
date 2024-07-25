@@ -15,7 +15,7 @@ def log_request_info():
     access_logger.info(log_data)
 
 
-# MySQL connection configuration
+
 
 
 # Create connection to the MySQL database
