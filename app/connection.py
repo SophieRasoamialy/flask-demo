@@ -1,7 +1,7 @@
 config = {
-        'user': 'root',
-        'password': 'root',
+        'user': 'admin',
+        'password': '123456789',
         'host': 'db',
-        'port': '3306',
+        'port': 'mybooks.cjeag286c22o.us-east-1.rds.amazonaws.com',
         'database': 'mybooks'
     }
