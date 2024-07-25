@@ -15,9 +15,6 @@ def log_request_info():
     access_logger.info(log_data)
 
 
-
-
-
 # Create connection to the MySQL database
 db = mysql.connector.connect(**config)
 
@@ -62,6 +59,7 @@ def get_books():
 # Route to add a new book
 @app.route('/books', methods=['POST'])
 def add_book():
+    print("1)add a new book")
     book_data = request.get_json()
     author = book_data.get('author')
     title = book_data.get('title')
