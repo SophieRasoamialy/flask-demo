@@ -26,5 +26,5 @@ jobs:
         run: |
           # Add your deployment commands here
           # For example, you might use a script to deploy your Flask app
-          python crud-rds-mysql.py
+          python ./app/crud-rds-mysql.py
 
