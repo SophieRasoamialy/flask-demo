@@ -45,6 +45,7 @@ cursor.execute(create_table_query)
 # Route to get all books
 @app.route('/books', methods=['GET'])
 def get_books():
+    print("1- get all books")
     select_query = "SELECT * FROM mybook"
     cursor.execute(select_query)
     books = cursor.fetchall()
@@ -98,11 +99,12 @@ def update_book(book_id):
 # Route to delete a book
 @app.route('/books/<int:book_id>', methods=['DELETE'])
 def delete_book(book_id):
+    print("to delete a book")
     delete_query = "DELETE FROM mybook WHERE id=%s"
     cursor.execute(delete_query, book_id)
     db.commit()
     
-    print("to delete a book")
+    
     return jsonify({'message': 'Book deleted successfully'})
 
 
