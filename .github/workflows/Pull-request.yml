@@ -1,0 +1,30 @@
+name: Deploy on Open Pull Request
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9.17 # Replace with your desired Python version
+
+      - name: Install dependencies
+        run: |
+          pip install -r ./app/requirements.txt
+          
+      - name: Deploy Your Application
+        run: |
+          # Add your deployment commands here
+          # For example, you might use a script to deploy your Flask app
+          python crud-rds-mysql.py
+

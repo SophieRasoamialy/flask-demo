@@ -59,6 +59,7 @@ def get_books():
             'isbn': book[3]
         }
         books_list.append(book_dict)
+        print("get all books")
     
     return jsonify(books_list)
 
@@ -75,6 +76,7 @@ def add_book():
     cursor.execute(insert_query, (author, title, isbn))
     db.commit()
     
+    print("add a new book")
     return jsonify({'message': 'Book added successfully'}), 201
 
 
@@ -89,7 +91,7 @@ def update_book(book_id):
     update_query = "UPDATE mybook SET author=%s, title=%s, isbn=%s WHERE id=%s"
     cursor.execute(update_query, (author, title, isbn, book_id))
     db.commit()
-    
+    print("update an existing book")
     return jsonify({'message': 'Book updated successfully'})
 
 
@@ -100,6 +102,7 @@ def delete_book(book_id):
     cursor.execute(delete_query, book_id)
     db.commit()
     
+    print("delete a book")
     return jsonify({'message': 'Book deleted successfully'})
 
 
