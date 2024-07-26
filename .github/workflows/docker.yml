@@ -18,19 +18,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: login dans dockerhub
+        run: sudo docker login -u hasindrae -p JesusMySavior@0908
+
       # Build Docker image
       - name: Build Docker image
         run: cd app && docker build -t hasindrae/docker-flask-mysql_app:latest .
-
-      - name: verifier emplacement
-        run: pwd
-
-      # List Docker images to verify
-      - name: List Docker images
-        run: docker images
-
-      - name: login dans dockerhub
-        run: sudo docker login -u hasindrae -p JesusMySavior@0908
 
       - name: push dans dockerhub
         run : docker push hasindrae/docker-flask-mysql_app:latest
