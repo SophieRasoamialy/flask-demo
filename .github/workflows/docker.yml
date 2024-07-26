@@ -33,4 +33,4 @@ jobs:
         run: sudo docker login -u hasindrae -p JesusMySavior@0908
 
       - name: push dans dockerhub
-        run : docker push hasindrae/docker-cours-flask-mysql_app
+        run : docker push hasindrae/docker-cours-flask-mysql_app:latest
