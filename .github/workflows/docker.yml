@@ -19,7 +19,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: login dans dockerhub
-        run: sudo docker login -u hasindrae -p JesusMySavior@0908
+        run: echo "JesusMySavior@0908" | sudo docker login -u hasindrae --password-stdin
+
 
       # Build Docker image
       - name: Build Docker image
@@ -27,3 +28,6 @@ jobs:
 
       - name: push dans dockerhub
         run : docker push hasindrae/docker-flask-mysql_app:latest
+
+      - name: listage
+        run: apt list --installed
