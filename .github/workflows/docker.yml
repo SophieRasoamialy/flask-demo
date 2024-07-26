@@ -18,15 +18,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
     
-      - name: deplacement dans app
-        run: cd /app
+      
 
-      - name: verifier emplacement
-        run: pwd
+      
 
       # Build Docker image
       - name: Build Docker image
-        run: docker build -t hasindrae/docker-cours-flask-mysql_app:latest .
+        run: cd app && docker build -t hasindrae/docker-cours-flask-mysql_app:latest .
+
+      - name: verifier emplacement
+        run: pwd
 
       # List Docker images to verify
       - name: List Docker images
