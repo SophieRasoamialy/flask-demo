@@ -1,8 +1,7 @@
 from flask import Flask, request, jsonify
-import mysql.connector
+import pymysql
 from connection import config
 import logging
-
 
 app = Flask(__name__)
 logging.basicConfig(filename='access.log', level=logging.INFO, 
@@ -14,18 +13,8 @@ def log_request_info():
     log_data = f"{request.remote_addr} - {request.method} {request.path} - {request.user_agent}"
     access_logger.info(log_data)
 
-
-# MySQL connection configuration
-# config = {
-#        'user': 'root',
-#        'password': 'root',
-#        'host': 'db',
-#        'port': '3306',
-#        'database': 'mybooks'
-#    }
-
 # Create connection to the MySQL database
-db = mysql.connector.connect(**config)
+db = pymysql.connect(**config)
 
 # Create a cursor object to interact with the database
 cursor = db.cursor()
@@ -41,11 +30,11 @@ CREATE TABLE IF NOT EXISTS mybooks (
 """
 cursor.execute(create_table_query)
 
-
 # Route to get all books
 @app.route('/books', methods=['GET'])
 def get_books():
-    select_query = "SELECT * FROM mybook"
+    print("1- get all books")
+    select_query = "SELECT * FROM mybooks"
     cursor.execute(select_query)
     books = cursor.fetchall()
     
@@ -59,26 +48,25 @@ def get_books():
             'isbn': book[3]
         }
         books_list.append(book_dict)
-        print("get all books")
+        print("2) get all books")
     
     return jsonify(books_list)
-
 
 # Route to add a new book
 @app.route('/books', methods=['POST'])
 def add_book():
+    print("1)add a new book")
     book_data = request.get_json()
     author = book_data.get('author')
     title = book_data.get('title')
     isbn = book_data.get('isbn')
     
-    insert_query = "INSERT INTO mybook (author, title, isbn) VALUES (%s, %s, %s)"
+    insert_query = "INSERT INTO mybooks (author, title, isbn) VALUES (%s, %s, %s)"
     cursor.execute(insert_query, (author, title, isbn))
     db.commit()
     
     print("add a new book")
     return jsonify({'message': 'Book added successfully'}), 201
-
 
 # Route to update an existing book
 @app.route('/books/<int:book_id>', methods=['PUT'])
@@ -88,24 +76,21 @@ def update_book(book_id):
     title = book_data.get('title')
     isbn = book_data.get('isbn')
     
-    update_query = "UPDATE mybook SET author=%s, title=%s, isbn=%s WHERE id=%s"
+    update_query = "UPDATE mybooks SET author=%s, title=%s, isbn=%s WHERE id=%s"
     cursor.execute(update_query, (author, title, isbn, book_id))
     db.commit()
     print("update an existing book")
     return jsonify({'message': 'Book updated successfully'})
 
-
 # Route to delete a book
 @app.route('/books/<int:book_id>', methods=['DELETE'])
 def delete_book(book_id):
-    delete_query = "DELETE FROM mybook WHERE id=%s"
-    cursor.execute(delete_query, book_id)
+    print("to delete a book")
+    delete_query = "DELETE FROM mybooks WHERE id=%s"
+    cursor.execute(delete_query, (book_id,))
     db.commit()
     
-    print("delete a book")
     return jsonify({'message': 'Book deleted successfully'})
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-
