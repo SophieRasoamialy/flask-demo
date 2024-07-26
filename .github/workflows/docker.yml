@@ -17,10 +17,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-    
-      
-
-      
 
       # Build Docker image
       - name: Build Docker image
@@ -33,5 +29,8 @@ jobs:
       - name: List Docker images
         run: docker images
 
-      - name: pusher danms dockerhub
+      - name: login dans dockerhub
         run: sudo docker login -u hasindrae -p JesusMySavior@0908
+
+      - name: push dans dockerhub
+        run : docker push hasindrae/docker-cours-flask-mysql_app
