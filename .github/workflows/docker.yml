@@ -17,7 +17,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+    
+      - name: deplacement dans app
+        run: cd app
 
+      - name: verifier emplacement
+        run: pwd
 
       # Build Docker image
       - name: Build Docker image
