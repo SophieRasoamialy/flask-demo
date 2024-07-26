@@ -21,7 +21,7 @@ jobs:
 
       # Build Docker image
       - name: Build Docker image
-        run: docker build -t hasindrae/docker-cours-flask-mysql_app .
+        run: docker build -t hasindrae/docker-cours-flask-mysql_app:latest .
 
       # List Docker images to verify
       - name: List Docker images
